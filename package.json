@@ -4,6 +4,6 @@
   "main": "main.js",
   "repository": "https://gitlab.com/tcc-tecnico/back-end.git",
   "author": "JotaPe <jotape@firemail.cc>",
-  "license": "ISC",
+  "license": "Copyright",
   "private": true
 }
