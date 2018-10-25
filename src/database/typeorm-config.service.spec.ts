@@ -9,7 +9,7 @@ describe('TypeOrmConfigService', () => {
     }).compile();
     service = module.get<TypeOrmConfigService>(TypeOrmConfigService);
   });
-  it('should be defined', () => {
+  it('should return a sucessful connection to the db', () => {
     expect(service).toBeDefined();
   });
 });

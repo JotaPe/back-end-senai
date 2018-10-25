@@ -9,7 +9,7 @@ describe('MapperService', () => {
     }).compile();
     service = module.get<MapperService>(MapperService);
   });
-  it('should be defined', () => {
+  it('should create te object maps sucessfully', () => {
     expect(service).toBeDefined();
   });
 });
