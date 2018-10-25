@@ -1,0 +1,1 @@
+# FOR ANY TEST CREATE A .env FILE
