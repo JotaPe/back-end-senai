@@ -73,6 +73,3 @@ typings/
 
 # VSCode
 .vscode
-
-# Environement File
-.env
