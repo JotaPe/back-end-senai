@@ -1,8 +1,12 @@
 {
     "defaultSeverity": "error",
     "extends": [
-        "tslint:recommended"
+        "tslint:recommended",
+        "plugin:nestjs/recommended"
     ],
+    "plugins": [
+        "nestjs"
+    ]
     "jsRules": {
         "no-unused-expression": true
     },
