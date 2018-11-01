@@ -7,4 +7,5 @@ export default {
     HOST: process.env.TYPEORM_HOST,
     logging: process.env.TYPEORM_LOGGING,
     entities: process.env.TYPEORM_ENTITIES,
+    url: process.env.TYPEORM_URL,
 }
