@@ -14,7 +14,7 @@
     "baseUrl": "./src"
   },
   "include": [
-    "src/**/*", "config/default.ts"
+    "src/**/*"
   ],
   "exclude": [
     "node_modules",

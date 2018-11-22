@@ -1,10 +1,15 @@
-import { Module, Global } from '@nestjs/common';
-import { MapperService } from './mapper/mapper.service';
-import { ConfigService } from './config/config.service';
+import { Global, Module } from '@nestjs/common';
+import { APP_FILTER } from '@nestjs/core';
+
+import { HttpErrorFilter } from './http-error.filter';
 
 @Global()
 @Module({
-  providers: [MapperService, ConfigService],
-  exports: [MapperService],
+  providers: [
+    {
+      provide: APP_FILTER,
+      useClass: HttpErrorFilter,
+    },
+  ],
 })
 export class SharedModule {}
