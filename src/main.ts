@@ -26,6 +26,9 @@ async function bootstrap() {
   SwaggerModule.setup('api/docs/user/', app, userDocument);
 
   await app.listen(AppModule.port);
-  Logger.log(`Server running on http://${AppModule.host}:${AppModule.port}`, 'Bootstrap');
+  Logger.log(
+    `Server running on http://${AppModule.host}:${AppModule.port}`,
+    'Bootstrap',
+  );
 }
 bootstrap();

@@ -1,11 +1,23 @@
-import { ApiModelProperty, ApiModelPropertyOptional } from '@nestjs/swagger';
+import { ApiModelPropertyOptional } from '@nestjs/swagger';
+import { IsArray, IsString } from 'class-validator';
+
 export class ExerciseDTO {
-  @ApiModelProperty()
+  @IsString()
+  @ApiModelPropertyOptional({
+    type: String,
+    description: 'Title of an exercise',
+  })
   title: string;
 
+  @IsString()
   @ApiModelPropertyOptional()
   description: string;
 
-  @ApiModelProperty()
+  @IsArray()
+  @ApiModelPropertyOptional({
+    isArray: true,
+    type: String,
+    description: 'Question Names',
+  })
   questions: string[];
 }

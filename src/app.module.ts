@@ -3,9 +3,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, InjectConfig } from 'nestjs-config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { SharedModule } from './shared/shared.module';
 import { ExerciseModule } from './exercise/exercise.module';
 import { ExerciseService } from './exercise/exercise.service';
+import { SharedModule } from './shared/shared.module';
+import { UserModule } from './user/user.module';
+
 
 @Module({
   imports: [
@@ -13,6 +15,7 @@ import { ExerciseService } from './exercise/exercise.service';
     SharedModule,
     TypeOrmModule.forRoot(),
     ExerciseModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService, ExerciseService],

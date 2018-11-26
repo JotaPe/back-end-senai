@@ -1,7 +1,8 @@
 import { Global, Module } from '@nestjs/common';
-import { APP_FILTER } from '@nestjs/core';
+import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 
 import { HttpErrorFilter } from './http-error.filter';
+import { LoggingInterceptor } from './logging.interceptor';
 
 @Global()
 @Module({
@@ -9,6 +10,10 @@ import { HttpErrorFilter } from './http-error.filter';
     {
       provide: APP_FILTER,
       useClass: HttpErrorFilter,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: LoggingInterceptor,
     },
   ],
 })
