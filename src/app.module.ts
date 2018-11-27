@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { roles } from 'app.roles';
+import { roles } from './app.roles';
 import { AccessControlModule } from 'nest-access-control';
 import { ConfigModule, InjectConfig } from 'nestjs-config';
 

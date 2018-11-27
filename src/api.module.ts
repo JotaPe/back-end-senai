@@ -1,13 +1,13 @@
 import { HttpErrorFilter } from './shared/http-error.filter';
 import { Module } from '@nestjs/common';
-import { ExerciseModule } from 'exercise/exercise.module';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
-import { LoggingInterceptor } from 'shared/logging.interceptor';
+import { LoggingInterceptor } from './shared/logging.interceptor';
 import { UserModule } from './user/user.module';
-
+import { ExerciseModule } from './exercise/exercise.module';
+import { WarningModule } from './warning/warning.module';
 
 @Module({
-  imports: [ExerciseModule, UserModule],
+  imports: [ExerciseModule, UserModule, WarningModule],
   providers: [
     {
       provide: APP_FILTER,
