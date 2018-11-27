@@ -3,11 +3,11 @@ import {
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
   BeforeInsert,
 } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
+import { UserRO } from './user.dto';
 
 @Entity('user')
 export class UserEntity {
@@ -17,13 +17,7 @@ export class UserEntity {
   @CreateDateColumn()
   createdAt: Date;
 
-  @UpdateDateColumn()
-  updatedAt: Date;
-
-  @Column({
-    type: 'text',
-    unique: true,
-  })
+  @Column({ type: 'text', unique: true })
   username: string;
 
   @Column('text')
@@ -34,21 +28,26 @@ export class UserEntity {
     this.password = await bcrypt.hash(this.password, 10);
   }
 
-  toReponseObject(showToken: boolean = true): object {
-    const { id, createdAt, updatedAt, username, token } = this;
-    const responseObject = { id, createdAt, updatedAt, username, token };
-    if (showToken) {
-      responseObject.token = token;
-    }
-    return responseObject;
-  }
-
-  async comparePassword(attempt: string) {
+  async comparePassword(attempt: string): Promise<boolean> {
     return await bcrypt.compare(attempt, this.password);
   }
 
-  private get token() {
-    const { id, usernmae } = this;
+  toResponseObject(showToken: boolean = true) {
+    const { id, createdAt, username, token } = this;
+    const responseObject: UserRO = {
+      id,
+      createdAt,
+      username,
+    };
+    if (showToken) {
+      responseObject.token = token;
+    }
+
+    return responseObject;
+  }
+
+  private get token(): string {
+    const { id, username } = this;
     return jwt.sign(
       {
         id,
