@@ -1,25 +1,22 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { roles } from 'app.roles';
+import { AccessControlModule } from 'nest-access-control';
 import { ConfigModule, InjectConfig } from 'nestjs-config';
+
+import { ApiModule } from './api.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ExerciseModule } from './exercise/exercise.module';
-import { ExerciseService } from './exercise/exercise.service';
-import { SharedModule } from './shared/shared.module';
-import { UserModule } from './user/user.module';
-
 
 @Module({
   imports: [
     ConfigModule.load(),
-    SharedModule,
     TypeOrmModule.forRoot(),
-    ExerciseModule,
-    UserModule,
+    AccessControlModule.forRoles(roles),
+    ApiModule,
   ],
   controllers: [AppController],
-  providers: [AppService, ExerciseService],
-  exports: [ExerciseService],
+  providers: [AppService],
 })
 export class AppModule {
   static host: string;
