@@ -1,3 +1,4 @@
+import { ValidationPipe } from './shared/validation.pipe';
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -6,24 +7,29 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const hostDomain = AppModule.isDev
+    ? `${AppModule.host}: ${AppModule.host}`
+    : AppModule.host;
 
-  const mainOptions = new DocumentBuilder()
-    .setTitle(AppModule.projectName)
-    .setDescription('Main API Documentation')
+  const swaggerOptions = new DocumentBuilder()
+    .setTitle(AppModule.name)
+    .setDescription('API Docs')
     .setVersion(String(AppModule.version))
-    .addTag(AppModule.tag)
+    .setHost(hostDomain.split('//')[1])
+    .addBearerAuth('Authorization', 'header')
     .build();
-  const mainDocument = SwaggerModule.createDocument(app, mainOptions);
-  SwaggerModule.setup('api/docs', app, mainDocument);
 
-  const userOptions = new DocumentBuilder()
-    .setTitle(AppModule.projectName)
-    .setDescription('User API Documentation')
-    .setVersion(String(AppModule.version))
-    .addTag(AppModule.tag)
-    .build();
-  const userDocument = SwaggerModule.createDocument(app, userOptions);
-  SwaggerModule.setup('api/docs/user/', app, userDocument);
+  const swaggerDoc = SwaggerModule.createDocument(app, swaggerOptions);
+
+  SwaggerModule.setup('/api/docs', app, swaggerDoc, {
+    swaggerUrl: `${hostDomain}/api/docs-json`,
+    explorer: true,
+    swaggerOptions: {
+      docExpansion: 'list',
+      filter: true,
+      showRequestDuration: true,
+    },
+  });
 
   await app.listen(AppModule.port);
   Logger.log(
@@ -31,4 +37,4 @@ async function bootstrap() {
     'Bootstrap',
   );
 }
-bootstrap();
+bootstrap().catch(console.error);
