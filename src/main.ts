@@ -37,4 +37,5 @@ async function bootstrap() {
     'Bootstrap',
   );
 }
+// tslint:disable-next-line:no-console
 bootstrap().catch(console.error);
