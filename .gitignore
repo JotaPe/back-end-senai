@@ -74,4 +74,5 @@ typings/
 # VSCode
 .vscode
 
+# No need to have this generated folder
 dist
