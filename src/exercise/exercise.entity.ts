@@ -1,9 +1,11 @@
+import { UserEntity } from './../user/user.entity';
 import {
-  Column,
-  CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
+  CreateDateColumn,
   UpdateDateColumn,
+  Column,
+  ManyToOne,
 } from 'typeorm';
 
 @Entity('exercise')
@@ -17,12 +19,18 @@ export class ExerciseEntity {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @Column({ nullable: false })
+  @Column('text')
   title: string;
 
-  @Column({ nullable: true })
+  @Column('text')
   description: string;
 
-  @Column('simple-array', { nullable: false })
+  @Column('simple-array')
+  questionTitles: string[];
+
+  @Column('simple-array')
   questions: string[];
+
+  @ManyToOne((type) => UserEntity, (author) => author.exercises)
+  author: UserEntity;
 }

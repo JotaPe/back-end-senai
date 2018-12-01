@@ -1,23 +1,31 @@
-import { ApiModelPropertyOptional } from '@nestjs/swagger';
-import { IsArray, IsString } from 'class-validator';
+import { ApiModelProperty, ApiModelPropertyOptional } from '@nestjs/swagger';
+import { IsString, IsArray } from 'class-validator';
+
+import { UserRO } from './../user/user.dto';
 
 export class ExerciseDTO {
+  @ApiModelProperty()
   @IsString()
-  @ApiModelPropertyOptional({
-    type: String,
-    description: 'Title of an exercise',
-  })
-  title: string;
+  readonly title: string;
 
+  @ApiModelProperty()
   @IsString()
+  readonly description: string;
+
   @ApiModelPropertyOptional()
-  description: string;
+  @IsArray({ always: false })
+  readonly questionTitles: string[];
 
-  @IsArray()
-  @ApiModelPropertyOptional({
-    isArray: true,
-    type: String,
-    description: 'Question Names',
-  })
+  @ApiModelPropertyOptional()
+  @IsArray({ always: false })
+  readonly questions: string[];
+}
+
+export class ExerciseRO {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  questionTitles: string[];
   questions: string[];
+  author: UserRO;
 }
