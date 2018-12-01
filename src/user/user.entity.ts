@@ -1,12 +1,15 @@
+import * as bcrypt from 'bcryptjs';
+import * as jwt from 'jsonwebtoken';
 import {
+  BeforeInsert,
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
-  BeforeInsert,
 } from 'typeorm';
-import * as bcrypt from 'bcryptjs';
-import * as jwt from 'jsonwebtoken';
+
+import { ExerciseEntity } from './../exercise/exercise.entity';
 import { UserRO } from './user.dto';
 
 @Entity('user')
@@ -18,10 +21,19 @@ export class UserEntity {
   createdAt: Date;
 
   @Column({ type: 'text', unique: true })
+  email: string;
+
+  @Column({ type: 'text', unique: true })
   username: string;
 
   @Column('text')
   password: string;
+
+  @OneToMany((type) => ExerciseEntity, (exercise) => exercise.author, {
+    cascade: true,
+    nullable: true,
+  })
+  exercises: ExerciseEntity[];
 
   @BeforeInsert()
   async hashPassword() {
@@ -32,16 +44,19 @@ export class UserEntity {
     return await bcrypt.compare(attempt, this.password);
   }
 
-  toResponseObject(showToken: boolean = true) {
-    const { id, createdAt, username, token } = this;
+  toResponseObject(showToken: boolean = true): UserRO {
+    const { id, createdAt, username, email, token } = this;
     const responseObject: UserRO = {
       id,
       createdAt,
+      email,
       username,
     };
-    if (showToken) {
+
+    if (this.email)
+      responseObject.email = this.email;
+    if (showToken)
       responseObject.token = token;
-    }
 
     return responseObject;
   }
