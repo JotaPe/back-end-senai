@@ -1,53 +1,63 @@
 import {
-  Body,
   Controller,
-  Delete,
   Get,
-  Logger,
   Param,
+  Query,
   Post,
-  Put,
   UsePipes,
+  Body,
+  Logger,
+  Put,
+  Delete,
 } from '@nestjs/common';
 
+import { ExerciseService } from './exercise.service';
 import { ValidationPipe } from './../shared/validation.pipe';
 import { ExerciseDTO } from './exercise.dto';
-import { ExerciseService } from './exercise.service';
+import { User } from './../user/user.decorator';
 
-@Controller('exercise')
+@Controller('api/exercise')
 export class ExerciseController {
-  constructor(private exerciseService: ExerciseService) {}
   private logger = new Logger('ExerciseController');
 
-  @Get('all')
-  getAll(): Promise<ExerciseDTO[]> {
-    return this.exerciseService.getAll();
+  constructor(private exerciseService: ExerciseService) {}
+
+  private logData(options: any) {
+    options.user && this.logger.log('USER ' + JSON.stringify(options.user));
+    options.body && this.logger.log('BODY ' + JSON.stringify(options.body));
+    options.id && this.logger.log('EXERCISE ' + JSON.stringify(options.id));
   }
 
-  @Get(':id')
-  getOne(@Param('id') id: string): Promise<ExerciseDTO> {
-    return this.exerciseService.read(id);
+  @Get('exercises')
+  allExercises(@Query('page') page: number) {
+    return this.exerciseService.showAll(page);
+  }
+
+  @Get(':title')
+  getOneExercise(@Param('title') title: string) {
+    this.logData({ title });
+    return this.exerciseService.read(title);
   }
 
   @Post('create')
   @UsePipes(new ValidationPipe())
-  create(@Body() data: ExerciseDTO): Promise<ExerciseDTO> {
-    this.logger.log(JSON.stringify(data));
-    return this.exerciseService.create(data);
+  createExercise(@User('id') user, @Body() body: ExerciseDTO) {
+    this.logData({ user, body });
+    return this.exerciseService.create(user, body);
   }
-
   @Put('update/:id')
   @UsePipes(new ValidationPipe())
-  update(
+  updateExercise(
     @Param('id') id: string,
-    @Body() data: Partial<ExerciseDTO>,
-  ): Promise<ExerciseDTO> {
-    this.logger.log(JSON.stringify(data));
-    return this.exerciseService.update(id, data);
+    @Body() body: Partial<ExerciseDTO>,
+    @User('id') user,
+  ) {
+    this.logData({ id, user, body });
+    return this.exerciseService.update(id, user, body);
   }
-
   @Delete('delete/:id')
-  delete(@Param('id') id: string): Object {
-    return this.exerciseService.destroy(id);
+  destroyExercise(@Param('id') id: string, @User('id') user) {
+    this.logData({ id, user });
+    return this.exerciseService.destroy(id, user);
   }
 }
