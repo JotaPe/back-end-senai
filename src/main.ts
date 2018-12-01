@@ -30,6 +30,7 @@ async function bootstrap() {
       showRequestDuration: true,
     },
   });
+  Logger.log('Swagger Loaded', 'Bootstrap');
 
   await app.listen(AppModule.port);
   Logger.log(
