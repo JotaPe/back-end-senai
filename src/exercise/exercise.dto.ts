@@ -14,15 +14,11 @@ export class ExerciseDTO {
 
   @ApiModelPropertyOptional()
   @IsArray({ always: false })
-  readonly questionTitles: string[];
-
-  @ApiModelPropertyOptional()
-  @IsArray({ always: false })
   readonly questions: string[];
 }
 
 export class ExerciseRO {
-  id: string;
+  id?: string;
   createdAt: Date;
   updatedAt: Date;
   questionTitles: string[];
