@@ -1,20 +1,20 @@
 import {
-  Controller,
-  Get,
-  Param,
-  Query,
-  Post,
-  UsePipes,
   Body,
-  Logger,
-  Put,
+  Controller,
   Delete,
+  Get,
+  Logger,
+  Param,
+  Post,
+  Put,
+  Query,
+  UsePipes,
 } from '@nestjs/common';
 
-import { ExerciseService } from './exercise.service';
 import { ValidationPipe } from './../shared/validation.pipe';
-import { ExerciseDTO } from './exercise.dto';
 import { User } from './../user/user.decorator';
+import { ExerciseDTO } from './exercise.dto';
+import { ExerciseService } from './exercise.service';
 
 @Controller('api/exercise')
 export class ExerciseController {

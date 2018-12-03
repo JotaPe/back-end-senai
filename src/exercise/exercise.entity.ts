@@ -1,12 +1,13 @@
-import { UserEntity } from './../user/user.entity';
 import {
-  Entity,
-  PrimaryGeneratedColumn,
-  CreateDateColumn,
-  UpdateDateColumn,
   Column,
+  CreateDateColumn,
+  Entity,
   ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
+
+import { UserEntity } from './../user/user.entity';
 
 @Entity('exercise')
 export class ExerciseEntity {
