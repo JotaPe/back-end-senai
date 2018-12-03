@@ -52,8 +52,7 @@ export class UserEntity {
       username,
     };
 
-    if (showToken)
-      responseObject.token = token;
+    if (showToken) responseObject.token = token;
 
     return responseObject;
   }
