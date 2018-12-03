@@ -45,7 +45,7 @@ export class ExerciseService {
   }
 
   async create(userId: string, data: ExerciseDTO): Promise<ExerciseRO> {
-    const user = await this.exerciseRepository.findOne({ where: { userId } });
+    const user = await this.userRepository.findOne({ where: { userId } });
     const exercise = await this.exerciseRepository.create({
       ...data,
       author: user,
