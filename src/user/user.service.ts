@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { UserEntity } from './user.entity';
-import { UserDTO, UserRO } from './user.dto';
+import { UserDTO, UserRO, UserLoginDTO } from './user.dto';
 
 @Injectable()
 export class UserService {
@@ -25,7 +25,7 @@ export class UserService {
     return users.map((user) => user.toResponseObject(false));
   }
 
-  async login(data: UserDTO): Promise<UserRO> {
+  async login(data: UserLoginDTO): Promise<UserRO> {
     const { username, password } = data;
     const user = await this.userRepository
       .findOne({ where: { username } })
