@@ -12,9 +12,6 @@ import { AdministrationModule } from './administration/administration.module';
 @Module({
   imports: [
     TypeOrmModule.forFeature([UserEntity, ExerciseEntity]),
-    TeacherModule,
-    StudentModule,
-    AdministrationModule,
   ],
   controllers: [UserController],
   providers: [UserService, ExerciseService],
