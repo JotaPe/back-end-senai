@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 
 import { ValidationPipe } from './../shared/validation.pipe';
-import { UserDTO } from './user.dto';
+import { UserDTO, UserLoginDTO } from './user.dto';
 import { UserService } from './user.service';
 import { AuthGuard } from './../shared/auth.guard';
 import { User } from './user.decorator';
@@ -19,7 +19,9 @@ import { User } from './user.decorator';
 export class UserController {
   constructor(private userService: UserService) {}
   @Get('all')
-  showAllUsers(@Query('page') page: number) {
+  @UseGuards(new AuthGuard())
+  @UsePipes(new ValidationPipe())
+  showAllUsers(@User() user, @Query('page') page: number) {
     return this.userService.showAll(page);
   }
 
@@ -36,7 +38,7 @@ export class UserController {
 
   @Post('login')
   @UsePipes(new ValidationPipe())
-  login(@Body() data: UserDTO) {
+  login(@Body() data: UserLoginDTO) {
     return this.userService.login(data);
   }
 
