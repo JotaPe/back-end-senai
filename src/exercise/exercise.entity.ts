@@ -26,9 +26,6 @@ export class ExerciseEntity {
   description: string;
 
   @Column('simple-array')
-  questionTitles: string[];
-
-  @Column('simple-array')
   questions: string[];
 
   @ManyToOne((type) => UserEntity, (author) => author.exercises)
