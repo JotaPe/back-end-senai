@@ -45,16 +45,18 @@ export class ExerciseController {
     this.logData({ user, body });
     return this.exerciseService.create(user, body);
   }
+
   @Put('update/:id')
   @UsePipes(new ValidationPipe())
   updateExercise(
     @Param('id') id: string,
     @Body() body: Partial<ExerciseDTO>,
-    @User('id') user,
+    @User() user,
   ) {
     this.logData({ id, user, body });
     return this.exerciseService.update(id, user, body);
   }
+
   @Delete('delete/:id')
   destroyExercise(@Param('id') id: string, @User('id') user) {
     this.logData({ id, user });
