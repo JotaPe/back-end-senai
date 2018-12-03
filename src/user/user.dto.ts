@@ -5,7 +5,7 @@ import { ExerciseRO } from './../exercise/exercise.dto';
 
 export class UserDTO {
   @ApiModelProperty()
-  @IsEmail()
+  @IsEmail({}, { always: true })
   email: string;
 
   @ApiModelProperty()
@@ -17,9 +17,18 @@ export class UserDTO {
   password: string;
 }
 
+export class UserLoginDTO {
+  @ApiModelProperty()
+  @IsNotEmpty()
+  username: string;
+
+  @ApiModelProperty()
+  @IsNotEmpty()
+  password: string;
+}
+
 export class UserRO {
   id: string;
-  email: string;
   username: string;
   createdAt: Date;
   exercises?: ExerciseRO[];
