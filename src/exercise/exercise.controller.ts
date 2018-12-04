@@ -28,7 +28,7 @@ export class ExerciseController {
     options.id && this.logger.log('EXERCISE ' + JSON.stringify(options.id));
   }
 
-  @Get('exercises')
+  @Get('all')
   allExercises(@Query('page') page: number) {
     return this.exerciseService.showAll(page);
   }

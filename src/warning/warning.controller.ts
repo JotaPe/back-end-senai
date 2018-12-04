@@ -28,7 +28,7 @@ export class WarningController {
     options.id && this.logger.log('WARNING ', JSON.stringify(options.warning));
   }
 
-  @Get('exercises')
+  @Get('all')
   allWarnings(@Query('page') page: number) {
     return this.warningService.showAll(page);
   }
