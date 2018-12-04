@@ -77,11 +77,36 @@ export class UserEntity {
   }
 
   toResponseObject(showToken: boolean = true): UserRO {
-    const { id, createdAt, username, token } = this;
+    const {
+      id,
+      createdAt,
+      username,
+      token,
+      name,
+      cpf,
+      rg,
+      gender,
+      neighborhood,
+      city,
+      federativeUnity,
+      phoneNumber,
+      receivedWarnings,
+      authorWarnings,
+    } = this;
     const responseObject: UserRO = {
       id,
       createdAt,
       username,
+      name,
+      cpf,
+      rg,
+      gender,
+      neighborhood,
+      city,
+      federativeUnity,
+      phoneNumber,
+      receivedWarnings,
+      authorWarnings,
     };
 
     if (showToken) responseObject.token = token;

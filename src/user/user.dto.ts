@@ -2,6 +2,7 @@ import { ApiModelProperty } from '@nestjs/swagger';
 import { IsEmail, IsNotEmpty, IsPhoneNumber } from 'class-validator';
 
 import { ExerciseRO } from './../exercise/exercise.dto';
+import { WarningEntity } from '../warning/warning.entity';
 
 export class UserDTO {
   @ApiModelProperty()
@@ -65,4 +66,14 @@ export class UserRO {
   createdAt: Date;
   exercises?: ExerciseRO[];
   token?: string;
+  name: string;
+  cpf: string;
+  rg: string;
+  gender: string;
+  neighborhood: string;
+  city: string;
+  federativeUnity: string;
+  phoneNumber: string;
+  receivedWarnings: WarningEntity[];
+  authorWarnings: WarningEntity;
 }
