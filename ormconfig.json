@@ -1,9 +1,9 @@
 {
-  "type": "mariadb",
+  "type": "mysql",
   "host": "mysql995.umbler.com",
   "port": 3306,
-  "username": "root",
-  "password": "root",
+  "username": "smartschooluser",
+  "password": "smartschoolpass",
   "database": "smartschool",
   "synchronize": false,
   "logging": true,
