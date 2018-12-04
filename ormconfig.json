@@ -1,8 +1,8 @@
 {
-  "type": "mongodb",
+  "type": "mariadb",
   "host": "kamino.mongodb.umbler.com",
-  "port": 27017,
-  "username": "smartschool.us",
+  "port": 3306,
+  "username": "smartschooluser",
   "password": "smartschoolpass",
   "database": "smartschool",
   "logging": true,
