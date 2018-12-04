@@ -31,6 +31,30 @@ export class UserEntity {
   @Column('text')
   password: string;
 
+  @Column('text')
+  name: string;
+
+  @Column('text')
+  cpf: string;
+
+  @Column('text')
+  rg: string;
+
+  @Column('text')
+  gender: string;
+
+  @Column('text')
+  neighborhood: string;
+
+  @Column('text')
+  city: string;
+
+  @Column('text')
+  federativeUnity: string;
+
+  @Column('text')
+  phoneNumber: string;
+
   @OneToMany((type) => ExerciseEntity, (exercise) => exercise.author, {
     cascade: true,
     nullable: true,

@@ -1,5 +1,5 @@
 import { ApiModelProperty } from '@nestjs/swagger';
-import { IsEmail, IsNotEmpty } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsPhoneNumber } from 'class-validator';
 
 import { ExerciseRO } from './../exercise/exercise.dto';
 
@@ -15,6 +15,38 @@ export class UserDTO {
   @ApiModelProperty()
   @IsNotEmpty()
   password: string;
+
+  @ApiModelProperty()
+  @IsNotEmpty()
+  name: string;
+
+  @ApiModelProperty()
+  @IsNotEmpty()
+  cpf: string;
+
+  @ApiModelProperty()
+  @IsNotEmpty()
+  rg: string;
+
+  @ApiModelProperty()
+  @IsNotEmpty()
+  gender: string;
+
+  @ApiModelProperty()
+  @IsNotEmpty()
+  neighborhood: string;
+
+  @ApiModelProperty()
+  @IsNotEmpty()
+  city: string;
+
+  @ApiModelProperty()
+  @IsNotEmpty()
+  federativeUnity: string;
+
+  @ApiModelProperty()
+  @IsPhoneNumber('BR')
+  phoneNumber: string;
 }
 
 export class UserLoginDTO {
