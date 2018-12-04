@@ -1,7 +1,7 @@
 {
-  "type": "postgres",
+  "type": "mariadb",
   "host": "localhost",
-  "port": 5432,
+  "port": 3306,
   "username": "smartschooluser",
   "password": "smartschoolpass",
   "database": "smartschool",
