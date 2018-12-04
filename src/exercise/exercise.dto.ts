@@ -2,6 +2,7 @@ import { ApiModelProperty, ApiModelPropertyOptional } from '@nestjs/swagger';
 import { IsArray, IsString } from 'class-validator';
 
 import { UserRO } from './../user/user.dto';
+import { QuestionsEntity } from './question.entity';
 
 export class ExerciseDTO {
   @ApiModelProperty()
@@ -14,7 +15,7 @@ export class ExerciseDTO {
 
   @ApiModelPropertyOptional()
   @IsArray({ always: false })
-  readonly questions: string[];
+  readonly questions: QuestionsEntity[];
 }
 
 export class ExerciseRO {

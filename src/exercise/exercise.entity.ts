@@ -5,9 +5,11 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
 
 import { UserEntity } from './../user/user.entity';
+import { QuestionsEntity } from './question.entity';
 
 @Entity('exercise')
 export class ExerciseEntity {
@@ -26,8 +28,8 @@ export class ExerciseEntity {
   @Column('text')
   description: string;
 
-  @Column('simple-array')
-  questions: string[];
+  @OneToMany((type) => QuestionsEntity, (questions) => questions.exercise)
+  questions: QuestionsEntity[];
 
   @ManyToOne((type) => UserEntity, (author) => author.exercises)
   author: UserEntity;
