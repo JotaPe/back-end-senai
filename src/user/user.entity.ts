@@ -1,3 +1,4 @@
+import { WarningEntity } from './../warning/warning.entity';
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 import {
@@ -7,6 +8,7 @@ import {
   Entity,
   OneToMany,
   PrimaryGeneratedColumn,
+  ManyToOne,
 } from 'typeorm';
 
 import { ExerciseEntity } from './../exercise/exercise.entity';
@@ -34,6 +36,12 @@ export class UserEntity {
     nullable: true,
   })
   exercises: ExerciseEntity[];
+
+  @ManyToOne((type) => WarningEntity, (warning) => warning.receiver)
+  receivedWarnings: WarningEntity[];
+
+  @ManyToOne((type) => WarningEntity, (warning) => warning.author)
+  authorWarnings: WarningEntity;
 
   @BeforeInsert()
   async hashPassword() {
