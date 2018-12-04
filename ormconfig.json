@@ -2,7 +2,7 @@
   "type": "mysql",
   "host": "mysql995.umbler.com",
   "port": 3306,
-  "username": "smartschooluser",
+  "username": "smartchooluser",
   "password": "smartschoolpass",
   "database": "smartschool",
   "synchronize": false,
