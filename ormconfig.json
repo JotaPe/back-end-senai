@@ -2,11 +2,10 @@
   "type": "mysql",
   "host": "mysql995.umbler.com",
   "port": 3306,
-  "username": "smartchooluser",
+  "username": "smartschooluser",
   "password": "smartschoolpass",
   "database": "smartschool",
   "synchronize": true,
   "logging": true,
-  "entities": ["./src/**/*.entity.ts", "./dist/**/*.entity.js"],
-  "dropSchemas": true
+  "entities": ["./src/**/*.entity.ts", "./dist/**/*.entity.js"]
 }
