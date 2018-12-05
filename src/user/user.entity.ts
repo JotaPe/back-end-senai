@@ -25,9 +25,6 @@ export class UserEntity {
   @Column({ type: 'text', unique: true })
   email: string;
 
-  @Column({ type: 'text', unique: true })
-  username: string;
-
   @Column('text')
   password: string;
 
@@ -80,7 +77,6 @@ export class UserEntity {
     const {
       id,
       createdAt,
-      username,
       token,
       name,
       cpf,
@@ -96,7 +92,6 @@ export class UserEntity {
     const responseObject: UserRO = {
       id,
       createdAt,
-      username,
       name,
       cpf,
       rg,
@@ -115,11 +110,11 @@ export class UserEntity {
   }
 
   private get token(): string {
-    const { id, username } = this;
+    const { id, name } = this;
     return jwt.sign(
       {
         id,
-        username,
+        name,
       },
       process.env.SECRET,
       { expiresIn: '7d' },

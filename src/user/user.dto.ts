@@ -11,10 +11,6 @@ export class UserDTO {
 
   @ApiModelProperty()
   @IsNotEmpty()
-  username: string;
-
-  @ApiModelProperty()
-  @IsNotEmpty()
   password: string;
 
   @ApiModelProperty()
@@ -53,7 +49,7 @@ export class UserDTO {
 export class UserLoginDTO {
   @ApiModelProperty()
   @IsNotEmpty()
-  username: string;
+  name: string;
 
   @ApiModelProperty()
   @IsNotEmpty()
@@ -62,11 +58,10 @@ export class UserLoginDTO {
 
 export class UserRO {
   id: string;
-  username: string;
+  name: string;
   createdAt: Date;
   exercises?: ExerciseRO[];
   token?: string;
-  name: string;
   cpf: string;
   rg: string;
   gender: string;
