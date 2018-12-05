@@ -1,11 +1,11 @@
 {
-  "type": "mariadb",
-  "host": "mysql995.umbler.com",
-  "port": 3306,
-  "username": "smartschooluser",
-  "password": "smartschoolpass",
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "username": "postgres",
+  "password": "",
   "database": "smartschool",
   "logging": true,
-  "synchronize": true,
+  "synchronize": false,
   "entities": ["./src/**/*.entity.ts", "./dist/**/*.entity.js"]
 }
