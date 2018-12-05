@@ -34,10 +34,10 @@ export class UserEntity {
   @Column('text')
   name: string;
 
-  @Column('text')
+  @Column({ type: 'text', unique: true })
   cpf: string;
 
-  @Column('text')
+  @Column({ type: 'text', unique: true })
   rg: string;
 
   @Column('text')
@@ -52,7 +52,7 @@ export class UserEntity {
   @Column('text')
   federativeUnity: string;
 
-  @Column('text')
+  @Column({ type: 'text', unique: true })
   phoneNumber: string;
 
   @OneToMany((type) => ExerciseEntity, (exercise) => exercise.author, {
