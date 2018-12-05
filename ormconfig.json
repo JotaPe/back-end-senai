@@ -1,11 +1,13 @@
 {
-  "type": "postgres",
-  "host": "localhost",
-  "port": 5432,
-  "username": "postgres",
+  "type": "sqljs",
+  "host": "",
+  "port": 0,
+  "username": "",
   "password": "",
   "database": "smartschool",
-  "logging": true,
-  "synchronize": false,
+  "location": "smartschool",
+  "logging": ["query", "schema"],
+  "autoSave": true,
+  "synchronize": true,
   "entities": ["./src/**/*.entity.ts", "./dist/**/*.entity.js"]
 }
