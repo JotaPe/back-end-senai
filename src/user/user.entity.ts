@@ -26,6 +26,9 @@ export class UserEntity {
   email: string;
 
   @Column('text')
+  username: string;
+
+  @Column('text')
   password: string;
 
   @Column('text')
@@ -78,6 +81,7 @@ export class UserEntity {
       id,
       createdAt,
       token,
+      username,
       name,
       cpf,
       rg,
@@ -92,6 +96,7 @@ export class UserEntity {
     const responseObject: UserRO = {
       id,
       createdAt,
+      username,
       name,
       cpf,
       rg,
